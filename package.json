@@ -1,17 +1,12 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "type": "module",
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "nuxt": "^3.14.1592",
-    "vue": "latest",
-    "vue-router": "latest"
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
