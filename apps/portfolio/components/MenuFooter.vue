@@ -31,7 +31,7 @@ const emit = defineEmits<{
 
 <style scoped>
 .footer_menu {
-  @apply bg-red-500 absolute w-[200px] h-[50px] rounded fixed left-[50%] px-2 rounded-full flex items-end;
+  @apply bg-red-500 w-[200px] h-[50px] fixed left-[50%] px-2 rounded-full flex items-end justify-between;
   transform: translate(-50%, -50%) translateY(80px);
 }
 </style>
