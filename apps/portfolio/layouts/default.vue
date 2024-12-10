@@ -6,7 +6,7 @@ const router = useRouter();
 </script>
 
 <template>
-  <div class="h-screen w-full bg-white">
+  <div class="h-screen w-full dark:bg-night">
     <div class="text-red-600">
       {{ route.fullPath }}
     </div>
