@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Component } from 'vue';
+import type { Component } from 'vue';
 import { House, Lightbulb, PencilRuler, Github, Linkedin, Moon } from 'lucide-vue-next';
 
 const emit = defineEmits<{
@@ -86,9 +86,9 @@ const toggleTheme = () => {
 <template>
   <div>
     <div class="footer_menu">
-      <div v-for="(item, index) in menuArr" :key="index">
-        <div class="btn rounded-full footer__btn relative" @click="emit(item.event)" v-if="item.type === 'intern'">
-          <span class="absolute bottom-14 p-1 bg-night rounded hidden tooltip text-[10px]">
+      <div class="blocky" v-for="(item, index) in menuArr" :key="index">
+        <div class="block_item" @click="emit(item.event)" v-if="item.type === 'intern'">
+          <span class="tooltip">
             {{ item.tooltip }}
           </span>
           <component :is="item.icon" size="16"/>
@@ -101,7 +101,7 @@ const toggleTheme = () => {
           :href="item.link"
           :target="item.link ? '_blank' : ''"
           no-rel
-          class="btn rounded-full footer__btn relative"
+          class="btn rounded-full block_item relative"
         >
           <span class="tooltip">
             {{ item.tooltip }}
@@ -109,7 +109,7 @@ const toggleTheme = () => {
           <component :is="item.icon" size="16"/>
         </NuxtLink>
 
-        <div class="btn rounded-full footer__btn relative" @click="toggleTheme" v-if="item.type === 'toggle'">
+        <div class="btn rounded-full block_item relative" @click="toggleTheme" v-if="item.type === 'toggle'">
           <span class="tooltip">
             {{ item.tooltip }}
           </span>
@@ -120,25 +120,64 @@ const toggleTheme = () => {
   </div>
 </template>
 
-<style scoped>
+<style>
+:root {
+  --lerp-0: 1;
+  --lerp-1: 0.5;
+  --lerp-2: 0;
+}
+
 .footer_menu {
-  @apply bg-onyx h-[50px] fixed left-[50%] px-2 rounded-full flex items-center justify-between gap-1;
+  @apply bg-onyx-100 h-[50px] fixed left-[50%] px-2 py-1 rounded-full flex items-center justify-between gap-1;
   transform: translate(-50%, -50%) translateY(80px);
 }
 
-.footer__btn {
-  @apply transition-transform ease-in duration-300;
+.blocky {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  flex: calc(0.2 + (var(--lerp, 0) * 1.5));
+  transition: flex 0.2s;
+  position: relative;
 }
 
-.footer__btn:hover {
-  @apply scale-110;
+.block_item {
+  @apply btn rounded-full relative bg-onyx-400 from-inherit h-9 min-h-9;
+
+  transform: translateY(calc(var(--lerp) * -55%));
+  transition: transform 0.2s;
+	transform-origin: 50% 100%;
 }
 
-.footer__btn:hover .tooltip {
+.block_item:hover {
+  @apply bg-onyx-400 from-inherit;
+}
+
+.blocky:hover .block_item .tooltip {
    @apply block;
 }
 
 .tooltip {
-  @apply absolute bottom-14 p-1 bg-night rounded text-[10px] hidden;
+  @apply absolute bottom-10 p-1 bg-night rounded text-[10px] hidden;
+}
+
+:is(.blocky:hover, .blocky:focus-visible) {
+  --lerp: var(--lerp-0);
+  z-index: 5;
+}
+
+.blocky:has( + :is(.blocky:hover, .blocky:focus-visible)), :is(.blocky:hover, .blocky:focus-visible) + .blocky {
+  --lerp: var(--lerp-1);
+  z-index: 4;
+}
+
+.blocky:has( + .blocky + :is(.blocky:hover, .blocky:focus-visible)), :is(.blocky:hover, .blocky:focus-visible) + .blocky + .blocky {
+  --lerp: var(--lerp-2);
+  z-index: 3;
+}
+
+.blocky:has( + .blocky + :is(.blocky:hover, .blocky:focus-visible)), :is(.blocky:hover, .blocky:focus-visible) + .blocky + .blocky + .blocky {
+  --lerp: var(--lerp-2);
+  z-index: 3;
 }
 </style>
