@@ -4,11 +4,11 @@ export default defineI18nConfig(() => ({
   messages: {
     en: {
       hello: "Hello, I'm Italo Canturil",
-      onboarding: "I'm a Web developer specializing in Front-End, currently building various projects to improve skills"
+      onboarding: "I'm a Web developer specializing in Front-End, currently building various projects to improve skills."
     },
     pt: {
       hello: "Olá, sou o Italo Canturil",
-      onboarding: "Sou desenvolverdor Web especializado no Front-End, atualmente construindo vários projetos para melhorar habilidades"
+      onboarding: "Desenvolverdor Web especializado no Front-End, atualmente construindo vários projetos para melhorar habilidades."
     }
   }
 }))

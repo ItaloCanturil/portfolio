@@ -1,15 +1,14 @@
 <script setup lang="ts">
 const route = useRoute();
 
-definePageMeta({
-  layout: 'default',
-})
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col justify-center h-screen">
     <h1>{{ $t('hello')}}</h1>
 
     <p>{{ $t('onboarding') }}</p>
+
+    <div class="divider"></div>
   </div>
 </template>

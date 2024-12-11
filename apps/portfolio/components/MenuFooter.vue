@@ -2,6 +2,8 @@
 import type { Component } from 'vue';
 import { House, Lightbulb, PencilRuler, Github, Linkedin, Moon } from 'lucide-vue-next';
 
+const { setLocale } = useI18n();
+
 const emit = defineEmits<{
   (e: 'home'): void,
   (e: 'craft'): void,
@@ -79,7 +81,17 @@ const menuArr: MenuItem[] = [
 ]
 
 const toggleTheme = () => {
-  document.documentElement.toggleAttribute('dark');
+  const theme = localStorage.getItem('colors-theme');
+
+  if (theme) {
+    if (theme === 'light') {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('colors-theme', 'dark');
+    } else {
+      document.documentElement.classList.add('light');
+      localStorage.setItem('colors-theme', 'light');
+    }
+  }
 }
 </script>
 
@@ -115,20 +127,23 @@ const toggleTheme = () => {
           </span>
           <component :is="item.icon" size="16"/>
         </div>
+
+        <!-- <details class="btn rounded-full block_item relative">
+          <summary>🔁</summary>
+          <ul>
+            <li @click="setLocale('pt')">BR</li>
+            <li @click="setLocale('en')">EUA</li>
+          </ul>
+        </details> -->
       </div>
     </div>
   </div>
 </template>
 
-<style>
-:root {
-  --lerp-0: 1;
-  --lerp-1: 0.5;
-  --lerp-2: 0;
-}
+<style scoped>
 
 .footer_menu {
-  @apply bg-onyx-100 h-[50px] fixed left-[50%] px-2 py-1 rounded-full flex items-center justify-between gap-1;
+  @apply dark:bg-onyx-100 bg-[#edede9] h-[50px] fixed left-[50%] bottom-[100px] px-2 py-1 rounded-full flex items-center justify-between gap-1;
   transform: translate(-50%, -50%) translateY(80px);
 }
 
@@ -142,7 +157,7 @@ const toggleTheme = () => {
 }
 
 .block_item {
-  @apply btn rounded-full relative bg-onyx-400 from-inherit h-9 min-h-9;
+  @apply btn rounded-full relative dark:bg-onyx-400 bg-[#f2f2f2ff] from-inherit h-9 min-h-9 border-[#dbdfe2ff] dark:border-davys_gray-100;
 
   transform: translateY(calc(var(--lerp) * -55%));
   transition: transform 0.2s;

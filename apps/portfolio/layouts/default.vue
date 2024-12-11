@@ -6,17 +6,16 @@ const router = useRouter();
 </script>
 
 <template>
-  <div class="h-screen w-full dark:bg-night">
-    <div class="text-red-600">
-      {{ route.fullPath }}
+  <div class="h-screen w-full dark:bg-night bg-slate-100 dark:text-[#edede9] text-eerie_black">
+    <div class="max-w-3xl antialiased m-auto px-4">
+      <slot />
     </div>
-
-    <slot />
 
     <MenuFooter 
       @blog="() => router.push('/blog')"
       @craft="() => router.push('/craft')"
       @home="() => router.push('/')"
+      @toggle=""
     />
   </div>
 </template>

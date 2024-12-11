@@ -1,3 +1,39 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+
+:root {
+  --lerp-0: 1;
+  --lerp-1: 0.5;
+  --lerp-2: 0;
+  --platinum: #dbdfe2ff;
+  --antiflash-white: #f1f5f9ff;
+  --antiflash-white-2: #eeefedff;
+  --isabelline: #edede9ff;
+  --white-smoke: #f2f2f2ff;
+  --night: #151515ff;
+  --eerie-black: #171717ff;
+  --onyx: #434343ff;
+  --davys-gray: #5a5a5aff;
+  --silver: #cbcbcbff;
+}
+
+.dark {
+  --background: var(--night);
+  --text: var(--isabelline);
+  --border: var(--davys-gray);
+  --card: var(--onyx);
+
+  background: var(--background);
+}
+
+.light {
+  
+
+  --background: var(--antiflash-white);
+  --text: var(--eerie-black);
+  --border: var(--platinum);
+  --card: var(--white-smoke);
+
+  background: var(--background);
+}
