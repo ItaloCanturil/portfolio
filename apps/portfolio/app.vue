@@ -1,5 +1,4 @@
-<script setup lang="ts">
-// window.matchMedia('prefers-colors-theme');
+<script lang="ts">
 </script>
 
 <template>

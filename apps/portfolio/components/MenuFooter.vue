@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
-import { House, Lightbulb, PencilRuler, Github, Linkedin, Moon } from 'lucide-vue-next';
+import { House, Lightbulb, PencilRuler, Github, Linkedin, Moon, Sun } from 'lucide-vue-next';
 
 const { setLocale } = useI18n();
 
@@ -75,24 +75,29 @@ const menuArr: MenuItem[] = [
   },
   {
     type: 'toggle',
-    icon: Moon,
+    icon: [Moon, Sun],
     tooltip: 'Toggle theme',
   }
 ]
 
-const toggleTheme = () => {
-  const theme = localStorage.getItem('colors-theme');
+// const toggleTheme = () => {
+//   const theme = localStorage.getItem('colors-theme');
 
-  if (theme) {
-    if (theme === 'light') {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('colors-theme', 'dark');
-    } else {
-      document.documentElement.classList.add('light');
-      localStorage.setItem('colors-theme', 'light');
-    }
-  }
-}
+//   if (theme) {
+//     if (theme === 'light') {
+//       document.documentElement.classList.add('dark');
+//       document.documentElement.classList.remove('light');
+//       localStorage.setItem('colors-theme', 'dark');
+//     } else {
+//       document.documentElement.classList.add('light');
+//       document.documentElement.classList.remove('dark');
+//       localStorage.setItem('colors-theme', 'light');
+//     }
+//   }
+// }
+
+const { toggleTheme, userTheme} = toggleColorTheme();
+console.log("🚀 ~ userTheme:", userTheme.value)
 </script>
 
 <template>
@@ -121,11 +126,19 @@ const toggleTheme = () => {
           <component :is="item.icon" size="16"/>
         </NuxtLink>
 
-        <div class="btn rounded-full block_item relative" @click="toggleTheme" v-if="item.type === 'toggle'">
-          <span class="tooltip">
-            {{ item.tooltip }}
-          </span>
-          <component :is="item.icon" size="16"/>
+        <div v-if="item.type === 'toggle'">
+          <div v-show="userTheme === 'light'" class="btn rounded-full block_item relative" @click="toggleTheme('dark')">
+            <span class="tooltip">
+              {{ item.tooltip }}
+            </span>
+            <component :is="item.icon[0]" size="16"/>
+          </div>
+          <div v-show="userTheme === 'dark'" class="btn rounded-full block_item relative" @click="toggleTheme('light')">
+            <span class="tooltip">
+              {{ item.tooltip }}
+            </span>
+            <component :is="item.icon[1]" size="16"/>
+          </div>
         </div>
 
         <!-- <details class="btn rounded-full block_item relative">
