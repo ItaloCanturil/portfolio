@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/content": "2.13.4",
     "@nuxtjs/i18n": "9.0.0-rc.2",
     "@vueuse/motion": "^2.2.6",
     "nuxt": "^3.14.1592",

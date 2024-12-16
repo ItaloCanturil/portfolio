@@ -6,7 +6,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     'nuxt-lucide-icons',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@nuxt/content'
   ],
   lucide: {
     namePrefix: 'Icon'
@@ -18,5 +19,13 @@ export default defineNuxtConfig({
       { code: 'pt', language: 'pt-BR'},
     ],
     defaultLocale: 'pt'
+  },
+  content: {
+    navigation: {
+      fields: ['author', 'publishedAt']
+    },
+    experimental: {
+      search: true
+    }
   }
 })
