@@ -1,40 +1,23 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
-import { House, Lightbulb, PencilRuler, Github, Linkedin, Moon, Sun } from 'lucide-vue-next';
+import { House, Lightbulb, PencilRuler, Github, Linkedin, Moon, Sun, Languages } from 'lucide-vue-next';
 
 const { setLocale } = useI18n();
+const activeTranslate = ref<boolean>(false);
 
 const emit = defineEmits<{
-  (e: 'home'): void,
-  (e: 'craft'): void,
-  (e: 'blog'): void,
+  (e: 'home' | 'craft' | 'blog' | undefined): void,
 }>()
 
-type Routes = {
-  type: 'intern',
-  icon: Component,
-  event: 'home' | 'craft' | 'blog',
-  tooltip: string
+type MenuItem = | {
+  type: 'intern' | 'toggle' | 'social' | 'translate';
+  icon: Component | Component[];
+  tooltip: string;
+  event?: 'home' | 'craft' | 'blog';
+  link?: string;
+} | {
+  type: 'divisor'
 }
-
-type ToggleThemer = {
-  type: 'toggle',
-  icon: Component,
-  tooltip: string,
-}
-
-type Social = {
-  type: 'social',
-  icon: Component,
-  tooltip: string,
-  link: string
-}
-
-type Divisor = {
-  type: string,
-}
-
-type MenuItem = Routes | ToggleThemer | Social | Divisor
 
 const menuArr: MenuItem[] = [
   {
@@ -43,12 +26,12 @@ const menuArr: MenuItem[] = [
     event: 'home',
     tooltip: 'Home'
   },
-  {
-    type: 'intern',
-    icon: Lightbulb,
-    event: 'craft',
-    tooltip: 'Craft'
-  },
+  // {
+  //   type: 'intern',
+  //   icon: Lightbulb,
+  //   event: 'craft',
+  //   tooltip: 'Craft'
+  // },
   {
     type: 'intern',
     icon: PencilRuler,
@@ -77,27 +60,15 @@ const menuArr: MenuItem[] = [
     type: 'toggle',
     icon: [Moon, Sun],
     tooltip: 'Toggle theme',
+  },
+  {
+    type: 'translate',
+    icon: Languages,
+    tooltip: 'Translate'
   }
 ]
 
-// const toggleTheme = () => {
-//   const theme = localStorage.getItem('colors-theme');
-
-//   if (theme) {
-//     if (theme === 'light') {
-//       document.documentElement.classList.add('dark');
-//       document.documentElement.classList.remove('light');
-//       localStorage.setItem('colors-theme', 'dark');
-//     } else {
-//       document.documentElement.classList.add('light');
-//       document.documentElement.classList.remove('dark');
-//       localStorage.setItem('colors-theme', 'light');
-//     }
-//   }
-// }
-
 const { toggleTheme, userTheme} = toggleColorTheme();
-console.log("🚀 ~ userTheme:", userTheme.value)
 </script>
 
 <template>
@@ -127,27 +98,27 @@ console.log("🚀 ~ userTheme:", userTheme.value)
         </NuxtLink>
 
         <div v-if="item.type === 'toggle'">
-          <div v-show="userTheme === 'light'" class="btn rounded-full block_item relative" @click="toggleTheme('dark')">
+          <button v-show="userTheme === 'light'" class="btn rounded-full block_item relative" @click="toggleTheme('dark')">
             <span class="tooltip">
               {{ item.tooltip }}
             </span>
             <component :is="item.icon[0]" size="16"/>
-          </div>
-          <div v-show="userTheme === 'dark'" class="btn rounded-full block_item relative" @click="toggleTheme('light')">
+          </button>
+          <button v-show="userTheme === 'dark'" class="btn rounded-full block_item relative" @click="toggleTheme('light')">
             <span class="tooltip">
               {{ item.tooltip }}
             </span>
             <component :is="item.icon[1]" size="16"/>
-          </div>
+          </button>
         </div>
 
-        <!-- <details class="btn rounded-full block_item relative">
-          <summary>🔁</summary>
-          <ul>
-            <li @click="setLocale('pt')">BR</li>
-            <li @click="setLocale('en')">EUA</li>
+        <div class="btn rounded-full block_item relative" v-if="item.type === 'translate'" @click="activeTranslate = !activeTranslate">
+          <component :is="item.icon" size="16"/>
+          <ul class="absolute bottom-11 flex flex-col gap-2" v-if="activeTranslate">
+            <li class="btn cursor-pointer" @click="setLocale('pt')">BR</li>
+            <li class="btn cursor-pointer" @click="setLocale('en')">EUA</li>
           </ul>
-        </details> -->
+        </div>
       </div>
     </div>
   </div>
