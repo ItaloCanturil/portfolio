@@ -23,14 +23,17 @@ type ProjectType = {
 
     <div class="divider"></div>
     
-    <div>
-      <p class="text-xl">{{ $t('recent') }}</p>
-    </div>
-
+    <section>
+      <p class="text-xl">{{ $t('recentSection') }}</p>
+    </section>
+    
     <div class="divider"></div>
     
-    <div class="grid grid-cols-3 gap-2 place-items-center">
+    <section>
+      <p class="text-xl">{{ $t('projectSection') }}</p>
+      <div class="grid grid-cols-3 gap-2 place-items-center">
 
-    </div>
+      </div>
+    </section>
   </div>
 </template>

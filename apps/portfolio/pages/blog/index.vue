@@ -8,13 +8,22 @@
 
 
     <ContentList path="/blog" v-slot="{ list }">
-      <div v-for="article in list" :key="article._path" class="flex flex-col rounded-lg p-4 border my-2">
-        <NuxtLink :href="article._path">
-          <span>{{ article.updatedAt }}</span>
+      <NuxtLink :href="article._path" v-for="article in list" :key="article._path" class="card flex flex-col rounded-lg p-4 border my-2">
+          <div class="flex items-center justify-between">
+            <span class="dark:text-isabelline-300 text-eerie_black-700">{{ article.updatedAt }}</span>
+
+            <IconArrowRight :size="14" class="-rotate-45 icon"/>
+          </div>
           <h2>{{ article.title }}</h2>
           <p>{{ article.description }}</p>
-        </NuxtLink>
-      </div>
+      </NuxtLink>
     </ContentList>
   </div>
 </template>
+
+<style scoped>
+.card:hover .icon {
+  @apply rotate-0 duration-150 ease-in
+}
+
+</style>

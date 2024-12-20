@@ -1,6 +1,6 @@
 ---
 title: "Motivos de overengineering do meu portfólio"
-description: "Motivos de overengineering do meu portfólio"
+description: ""
 updatedAt: 2024-12-05
 author: Italo Canturil
 ---
