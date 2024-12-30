@@ -7,6 +7,7 @@ const toggleColorTheme = () => {
     localStorage.setItem('colors-theme', theme);
     userTheme.value = theme;
     document.documentElement.className = theme;
+    document.documentElement.dataset.theme = theme;
   }
 
   const getMediaPreference = () => {

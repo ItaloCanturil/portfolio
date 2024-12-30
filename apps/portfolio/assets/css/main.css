@@ -23,17 +23,17 @@
   --text: var(--isabelline);
   --border: var(--davys-gray);
   --card: var(--onyx);
+  --tooltip: var(--night);
 
   background: var(--background);
 }
 
 .light {
-  
-
   --background: var(--antiflash-white);
   --text: var(--eerie-black);
   --border: var(--platinum);
   --card: var(--white-smoke);
+  --tooltip: var(--antiflash-white);
 
   background: var(--background);
 }

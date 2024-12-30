@@ -25,6 +25,18 @@ type ProjectType = {
     
     <section>
       <p class="text-xl">{{ $t('recentSection') }}</p>
+
+      <div>
+        <ContentNavigation v-slot="{ navigation }">
+          <NuxtLink
+            v-for="link of navigation"
+            :key="link._path"
+            :to="link._path"
+          >
+            {{ link.title }} 
+          </NuxtLink>
+        </ContentNavigation>
+      </div>
     </section>
     
     <div class="divider"></div>

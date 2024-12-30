@@ -1,7 +1,7 @@
 ---
 title: "Hello World"
 description: "First Markdown Based Blog Post"
-updatedAt: 2021-08-22
+publishedAt: 2024-12-05
 author: Bojack Horseman
 ---
 # Hello World

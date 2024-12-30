@@ -72,7 +72,7 @@ const { toggleTheme, userTheme} = toggleColorTheme();
 </script>
 
 <template>
-  <div>
+  <footer>
     <div class="footer_menu">
       <div class="blocky" v-for="(item, index) in menuArr" :key="index">
         <div class="block_item" @click="emit(item.event)" v-if="item.type === 'intern'">
@@ -89,7 +89,7 @@ const { toggleTheme, userTheme} = toggleColorTheme();
           :href="item.link"
           :target="item.link ? '_blank' : ''"
           no-rel
-          class="btn rounded-full block_item relative"
+          class="rounded-full block_item relative"
         >
           <span class="tooltip">
             {{ item.tooltip }}
@@ -98,13 +98,13 @@ const { toggleTheme, userTheme} = toggleColorTheme();
         </NuxtLink>
 
         <div v-if="item.type === 'toggle'">
-          <button v-show="userTheme === 'light'" class="btn rounded-full block_item relative" @click="toggleTheme('dark')">
+          <button v-show="userTheme === 'light'" class="rounded-full block_item relative" @click="toggleTheme('dark')">
             <span class="tooltip">
               {{ item.tooltip }}
             </span>
             <component :is="item.icon[0]" size="16"/>
           </button>
-          <button v-show="userTheme === 'dark'" class="btn rounded-full block_item relative" @click="toggleTheme('light')">
+          <button v-show="userTheme === 'dark'" class="rounded-full block_item relative" @click="toggleTheme('light')">
             <span class="tooltip">
               {{ item.tooltip }}
             </span>
@@ -112,7 +112,7 @@ const { toggleTheme, userTheme} = toggleColorTheme();
           </button>
         </div>
 
-        <div class="btn rounded-full block_item relative" v-if="item.type === 'translate'" @click="activeTranslate = !activeTranslate">
+        <div class="rounded-full block_item relative" v-if="item.type === 'translate'" @click="activeTranslate = !activeTranslate">
           <component :is="item.icon" size="16"/>
           <ul class="absolute bottom-11 flex flex-col gap-2" v-if="activeTranslate">
             <li class="btn cursor-pointer" @click="setLocale('pt')">BR</li>
@@ -121,7 +121,7 @@ const { toggleTheme, userTheme} = toggleColorTheme();
         </div>
       </div>
     </div>
-  </div>
+  </footer>
 </template>
 
 <style scoped>
@@ -141,15 +141,11 @@ const { toggleTheme, userTheme} = toggleColorTheme();
 }
 
 .block_item {
-  @apply btn rounded-full relative dark:bg-onyx-400 bg-[#f2f2f2ff] from-inherit h-9 min-h-9 border-[#dbdfe2ff] dark:border-davys_gray-100;
+  @apply btn rounded-full relative from-inherit h-9 min-h-9;
 
   transform: translateY(calc(var(--lerp) * -55%));
   transition: transform 0.2s;
 	transform-origin: 50% 100%;
-}
-
-.block_item:hover {
-  @apply bg-onyx-400 from-inherit;
 }
 
 .blocky:hover .block_item .tooltip {
@@ -157,7 +153,7 @@ const { toggleTheme, userTheme} = toggleColorTheme();
 }
 
 .tooltip {
-  @apply absolute bottom-10 p-1 bg-night rounded text-[10px] hidden;
+  @apply absolute bottom-10 p-1 rounded text-[10px] hidden;
 }
 
 :is(.blocky:hover, .blocky:focus-visible) {
