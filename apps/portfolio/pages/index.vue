@@ -1,10 +1,15 @@
 <script setup lang="ts">
+// import { ContentList } from '#build/components';
+import type { QueryBuilderParams } from '@nuxt/content';
+
 type ProjectType = {
   imgSrc: string,
   title: string,
   badge: string | string[],
   description: string,
 };
+
+const query: QueryBuilderParams = { path: '/blog', limit: 2, sort: [{ date: -1}] };
 
 </script>
 
@@ -26,16 +31,18 @@ type ProjectType = {
     <section>
       <p class="text-xl">{{ $t('recentSection') }}</p>
 
-      <div>
-        <ContentNavigation v-slot="{ navigation }">
-          <NuxtLink
-            v-for="link of navigation"
-            :key="link._path"
-            :to="link._path"
-          >
-            {{ link.title }} 
+      <div class="flex items-center gap-2">
+        <ContentList :query="query" v-slot="{ list }">
+          <NuxtLink :href="article._path" v-for="article in list" :key="article._path" class="card h-28 flex flex-col rounded-lg p-4 border my-2">
+              <div class="flex items-center justify-between">
+                <span class="dark:text-isabelline-300 text-eerie_black-700">{{ article.publishedAt }}</span>
+
+                <IconArrowRight :size="14" class="-rotate-45 icon"/>
+              </div>
+              <h2>{{ article.title }}</h2>
+              <p>{{ article.description }}</p>
           </NuxtLink>
-        </ContentNavigation>
+        </ContentList>
       </div>
     </section>
     
