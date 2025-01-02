@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// import { ContentList } from '#build/components';
 import type { QueryBuilderParams } from '@nuxt/content';
 
 type ProjectType = {

@@ -1,10 +1,16 @@
 <script setup lang="ts">
-
+  const search = ref<string>('');
+  const results = await searchContent(search);
+  console.log("🚀 ~ results:", results)
 </script>
 
 <template>
   <div class="flex flex-col justify-center">
-    blog
+    <div class="flex items-center justify-between w-full">
+      <h1>Blog</h1>
+
+      <input class="input" type="text" v-model="search">
+    </div>
 
 
     <ContentList path="/blog" v-slot="{ list }">
