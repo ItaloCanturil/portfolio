@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
-import { House, Lightbulb, PencilRuler, Github, Linkedin, Moon, Sun, Languages } from 'lucide-vue-next';
+import { House, Lightbulb, BookOpenText, Github, Linkedin, Moon, Sun, Languages } from 'lucide-vue-next';
 
 const { setLocale } = useI18n();
 const activeTranslate = ref<boolean>(false);
@@ -34,7 +34,7 @@ const menuArr: MenuItem[] = [
   // },
   {
     type: 'intern',
-    icon: PencilRuler,
+    icon: BookOpenText,
     event: 'blog',
     tooltip: 'Blog'
   },

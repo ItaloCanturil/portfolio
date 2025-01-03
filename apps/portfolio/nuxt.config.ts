@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-lucide-icons',
     '@nuxtjs/i18n',
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxt/image'
   ],
   lucide: {
     namePrefix: 'Icon'
