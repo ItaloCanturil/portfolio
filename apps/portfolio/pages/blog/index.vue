@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { formatDate } from '~/utils/formatData';
+
   const search = ref<string>('');
   // const results = await searchContent(search);
   // console.log("🚀 ~ results:", results)
@@ -16,7 +18,7 @@
     <ContentList path="/blog" v-slot="{ list }">
       <NuxtLink :href="article._path" v-for="article in list" :key="article._path" class="card flex flex-col rounded-lg p-4 border my-2">
           <div class="flex items-center justify-between">
-            <span class="dark:text-isabelline-300 text-eerie_black-700">{{ article.publishedAt }}</span>
+            <span class="dark:text-isabelline-300 text-eerie_black-700">{{ formatDate(article.publishedAt) }}</span>
 
             <IconArrowRight :size="14" class="-rotate-45 icon"/>
           </div>
