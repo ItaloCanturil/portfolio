@@ -43,5 +43,9 @@ export default defineNuxtConfig({
         }        
       }
     }
-  }
+  },
+  routeRules: {
+    "/": { prerender: true },
+    "/blog/**": { prerender: true },
+  },
 })
