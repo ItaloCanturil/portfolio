@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     'nuxt-lucide-icons',
     '@nuxtjs/i18n',
     '@nuxt/content',
-    '@nuxt/image'
+    '@nuxt/image',
+    '@vueuse/nuxt'
   ],
   lucide: {
     namePrefix: 'Icon'
