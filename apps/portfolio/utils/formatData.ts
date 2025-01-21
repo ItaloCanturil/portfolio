@@ -22,3 +22,13 @@ export const formatDateWithHour = (hour: string) => {
 export const stripTimeAndTimezone = (dateTime: string): string => {
   return new Date(dateTime).toISOString().split('T')[0];
 };
+
+export const calculateDaysBetween = ({start, end}: { start: number, end: number}) => {
+  const millisecondsInADay = 24 * 60 * 60 * 1000;
+
+  const differenceInMilliseconds = Math.abs(end - start);
+
+  const differenceInDays = Math.floor(differenceInMilliseconds / millisecondsInADay);
+
+  return differenceInDays;
+}
