@@ -5,7 +5,7 @@ publishedAt: 2024-12-05
 author: Italo Canturil
 ---
 
-# Motivos de overengineering do meu portfólio"
+# Motivos de overengineering do meu portfólio
 
 Já tem um tempo que quero refazer meu portfólio, até por que o antigo foi feito em 2021 com HTML, CSS e Javascript Vanilla, e hoje em dia tenho muito mais experiências e uma outra visão de mundo, por isso decidi refazer.
 
