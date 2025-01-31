@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   css: ['./assets/css/main.css'],
+  runtimeConfig: {
+    accessToken: "769b3d29ab3cda9cfea57535fc9e64796ad2f543"
+  },
   modules: [
     '@nuxtjs/tailwindcss',
     'nuxt-lucide-icons',
@@ -23,6 +26,11 @@ export default defineNuxtConfig({
     defaultLocale: 'pt'
   },
   content: {
+    // database: {
+    //   type: 'libsql',
+    //   url: process.env.TURSO_CONNECTION_URL,
+    //   authToken: process.env.TURSO_AUTH_TOKEN
+    // },
     navigation: {
       fields: ['author', 'publishedAt']
     },
