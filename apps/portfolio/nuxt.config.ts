@@ -1,11 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
-  css: ['./assets/css/main.css'],
-  runtimeConfig: {
-    accessToken: "769b3d29ab3cda9cfea57535fc9e64796ad2f543"
+  ssr: true,
+  devtools: {
+    enabled: true,
+
+    timeline: {
+      enabled: true,
+    },
   },
+  experimental: {
+    inlineRouteRules: true
+  },
+  css: ['./assets/css/main.css'],
+  // runtimeConfig: {
+  //   accessToken: "769b3d29ab3cda9cfea57535fc9e64796ad2f543"
+  // },
   modules: [
     '@nuxtjs/tailwindcss',
     'nuxt-lucide-icons',

@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <ContentList :quer="query" v-slot="{ list }">
-    <NuxtLink :href="article._path" v-for="article in list" :key="article._path" class="card flex flex-col rounded-lg p-4 border my-2 min-h-28">
+    <NuxtLink :href="article._path" v-for="article in list" :key="article._path" class="card flex flex-col rounded-lg p-4 border my-2 h-36">
         <div class="flex items-center justify-between">
           <span class="dark:text-isabelline-300 text-eerie_black-700">{{ formatDate(article.publishedAt) }}</span>
 

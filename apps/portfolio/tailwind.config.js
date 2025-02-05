@@ -2,6 +2,7 @@ import daisyui from 'daisyui';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+  mode: "jit",
   content: [
     "apps/portfolio/**.{js,vue,ts}",
     "./components/**/*.{js,vue,ts}",
@@ -10,6 +11,13 @@ export default {
     "./plugins/**/*.{js,ts}",
     "./app.vue",
     "./error.vue",
+  ],
+  purge: [
+    './components/**/*.{vue,js}',
+    './layouts/**/*.vue',
+    './pages/**/*.vue',
+    './plugins/**/*.{js,ts}',
+    './nuxt.config.{js,ts}',
   ],
   darkMode: "selector",
   theme: {

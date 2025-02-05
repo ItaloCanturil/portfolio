@@ -90,6 +90,8 @@ const { toggleTheme, userTheme} = toggleColorTheme();
           :target="item.link ? '_blank' : ''"
           no-rel
           class="rounded-full block_item relative"
+          :prefetch-on="{ interaction: true }"
+          external
         >
           <span class="tooltip">
             {{ item.tooltip }}
