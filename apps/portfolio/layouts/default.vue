@@ -2,7 +2,8 @@
 
 const route = useRoute();
 const router = useRouter();
-
+const username = 'italocanturil';
+const githubToken = useRuntimeConfig().public.GITHUB_TOKEN
 </script>
 
 <template>
@@ -17,5 +18,20 @@ const router = useRouter();
       @home="() => router.push('/')"
       @toggle=""
     />
+
+    <footer class="p-4 flex justify-between items-end">
+      <GithubLanguageStats :username="username" :token="githubToken"/>
+
+      <div class="flex flex-col items-end">
+        <div class="flex items-center gap-2">
+          <img class="rounded-full w-6" src="/ItaloLogo.png" alt="Logo Italo">
+
+          Italo Canturil
+        </div>
+
+        <span class="text-xs">Copyright &copy; 2025 - Todos os direitos reservados</span>
+
+      </div>
+    </footer>
   </div>
 </template>

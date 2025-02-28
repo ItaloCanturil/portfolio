@@ -13,9 +13,12 @@ export default defineNuxtConfig({
     inlineRouteRules: true
   },
   css: ['./assets/css/main.css'],
-  // runtimeConfig: {
-  //   accessToken: "769b3d29ab3cda9cfea57535fc9e64796ad2f543"
-  // },
+  runtimeConfig: {
+
+    public: {
+      GITHUB_TOKEN: process.env.GITHUB_PERSONAL_ACCESS_TOKEN
+    }
+  },
   modules: [
     '@nuxtjs/tailwindcss',
     'nuxt-lucide-icons',

@@ -40,6 +40,9 @@ const projects: ProjectType[] = [
         <p>{{ $t('onboarding') }}</p>
       </div>
       <UITechStack />
+
+      <div class="mt-4">
+      </div>
     </div>
 
     <div class="divider"></div>
