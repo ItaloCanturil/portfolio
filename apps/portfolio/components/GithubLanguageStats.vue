@@ -70,9 +70,22 @@ onMounted(async () => {
 
 <template>
   <div>
-    <div class="max-w-xs text-sm" v-for="(value, language) in languages" :key="language">
-      <div class="mb-2">{{ language }} - {{ value.percentage.toFixed(1) }}%</div>
-      <div class="language-progress rounded-full h-[3px]" :style="{ width: `${value.percentage}%`, backgroundColor: value.color }"></div>
+    <div class="max-w-xs text-sm" >
+      <div>Languages</div>
+
+      <div class="flex items-center h-2 rounded-full">
+        <div class="overflow-hidden  flex h-full" v-for="(value, language) in languages" :key="language" :style="{ width: `${value.percentage}%`, backgroundColor: value.color }">
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-x-4 g-y-1 text-xs">
+        <div class="flex items-center gap-1 mb-2" v-for="(value, language) in languages" :key="language">
+          <span class="h-2 w-2 rounded-full" :style="{ backgroundColor: value.color}"/>
+
+          <span>{{ language }}</span>
+
+           <span class="text-gray-400">{{ value.percentage.toFixed(1) }}%</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>

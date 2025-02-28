@@ -19,7 +19,7 @@ const githubToken = useRuntimeConfig().public.GITHUB_TOKEN
       @toggle=""
     />
 
-    <footer class="p-4 flex justify-between items-end">
+    <footer class="p-4 flex justify-between items-end max-w-3xl antialiased m-auto pb-32">
       <GithubLanguageStats :username="username" :token="githubToken"/>
 
       <div class="flex flex-col items-end">
