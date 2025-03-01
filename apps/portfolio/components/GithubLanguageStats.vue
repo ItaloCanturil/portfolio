@@ -17,12 +17,14 @@ interface LanguageColors {
 
 const props = defineProps<{
   token: string,
-  username: string
+  username: string,
+  repo: string
 }>();
 
 const languages = ref<LanguagesMap>({});
 const loading = ref(true);
 const error = ref<string | null>(null);
+const repoUrl = computed(() => `https:\\github.com/ItaloCanturil/${props.repo}`);
 const languageColors: LanguageColors = {
   JavaScript: '#f1e05a',
   TypeScript: '#3178c6',
@@ -31,7 +33,7 @@ const languageColors: LanguageColors = {
   CSS: '#563d7c',
 }
 
-onMounted(async () => {
+const getLanguage = async () => {
   try {
     const octokit = new Octokit({
       auth: props.token
@@ -39,9 +41,8 @@ onMounted(async () => {
 
     const { data: repos } = await octokit.rest.repos.listLanguages({
       owner: props.username,
-      repo: 'portfolio'
+      repo: props.repo
     })
-    console.log("🚀 ~ onMounted ~ repos:", repos) 
 
     const totalBytes = Object.values(repos).reduce((a, b) => a + b, 0);
     
@@ -64,17 +65,29 @@ onMounted(async () => {
     error.value = `Error fetching language stats: ${err.message}`
     loading.value = false
   }
-})
+}
 
+onMounted(() => getLanguage());
+
+watch(() => props.repo, () => getLanguage())
 </script>
 
 <template>
   <div>
     <div class="max-w-xs text-sm" >
-      <div>Languages</div>
+      <div>
+        <span>{{ $t('language') }} - </span> 
+        <NuxtLink
+          class="underline"
+          :to="repoUrl"
+          external
+        >
+        {{ props.repo }}
+        </NuxtLink>
+      </div>
 
-      <div class="flex items-center h-2 rounded-full">
-        <div class="overflow-hidden  flex h-full" v-for="(value, language) in languages" :key="language" :style="{ width: `${value.percentage}%`, backgroundColor: value.color }">
+      <div class="flex items-center h-2 rounded-full overflow-hidden my-1">
+        <div class="flex h-full" v-for="(value, language) in languages" :key="language" :style="{ width: `${value.percentage}%`, backgroundColor: value.color }">
         </div>
       </div>
       <div class="flex flex-wrap gap-x-4 g-y-1 text-xs">

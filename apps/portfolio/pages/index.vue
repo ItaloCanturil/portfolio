@@ -68,7 +68,7 @@ const projects: ProjectType[] = [
             </div>
 
             <NuxtLink v-if="project.hasLink" :href="project.link" external class="flex items-center gap-1">
-              <IconExternalLink size="16"/>
+              <IconExternalLink :size="16"/>
               External link
             </NuxtLink>
           </div>
