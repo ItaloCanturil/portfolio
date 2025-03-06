@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Octokit } from 'octokit';
+import { octokitCLI } from '#imports';
 
 interface LanguageData {
   bytes: number;
@@ -16,7 +16,6 @@ interface LanguageColors {
 }
 
 const props = defineProps<{
-  token: string,
   username: string,
   repo: string
 }>();
@@ -35,11 +34,8 @@ const languageColors: LanguageColors = {
 
 const getLanguage = async () => {
   try {
-    const octokit = new Octokit({
-      auth: props.token
-    });
-
-    const { data: repos } = await octokit.rest.repos.listLanguages({
+    
+    const { data: repos } = await octokitCLI.rest.repos.listLanguages({
       owner: props.username,
       repo: props.repo
     })

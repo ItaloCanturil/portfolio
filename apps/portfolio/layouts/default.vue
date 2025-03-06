@@ -17,8 +17,6 @@ const route = useRoute();
 const router = useRouter();
 const username = 'italocanturil';
 const repo = ref('portfolio');
-const githubToken = useRuntimeConfig().public.GITHUB_TOKEN
-
 
 provide('message', repo);
 </script>
@@ -37,7 +35,7 @@ provide('message', repo);
     />
 
     <footer class="p-4 flex justify-between items-end max-w-3xl antialiased m-auto pb-32">
-      <GithubLanguageStats :username="username" :token="githubToken" :repo="repo"/>
+      <GithubLanguageStats :username="username" :repo="repo"/>
 
       <div class="flex flex-col items-end">
         <div class="flex items-center gap-2">
